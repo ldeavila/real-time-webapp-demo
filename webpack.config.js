@@ -28,6 +28,7 @@ module.exports = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, './src'),
+        disableHostCheck: true,
         host: "0.0.0.0",
         port: 7000,
         headers: {"Access-Control-Allow-Origin": "*"}
