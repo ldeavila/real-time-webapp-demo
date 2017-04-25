@@ -1,2 +1,23 @@
-<h1>{{vm.message}}</h1>
-<p class="lead"></p>
+<div class="starter-template">
+    <h1>Inventory</h1>
+</div>
+<table class="table table-hover table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Count</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="item in vm.items">
+        <td>{{item.Name}}</td>
+        <td>{{item.Count}}</td>
+        <td class="text-center">
+            <button class="btn btn-primary btn-sm"
+                    data-ng-click="vm.addInventoryItem(item)">Order
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
