@@ -12,13 +12,15 @@ function dashboardController($scope) {
     const barChartSales = renderChart('bar-chart-sales', 'Count');
     const barChartInventory = renderChart('bar-chart-inventory', 'Total $ Value');
 
-    Rx.Observable
+    const observable = Rx.Observable
         .create(create)
         .skip(1)
         .map(parseData)
         .map(hasM)
         .map(hasA)
         .subscribe(onNext, onError, onComplete);
+
+    $scope.$on('$destroy', onDestroy);
 
     /////////
 
@@ -102,5 +104,9 @@ function dashboardController($scope) {
                 }
             }
         });
+    }
+
+    function onDestroy() {
+        observable.unsubscribe();
     }
 }
