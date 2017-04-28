@@ -26,8 +26,8 @@ function dashboardController($scope) {
 
     function create(observer) {
         const eventSource = new EventSource('http://aleatablesweb.azurewebsites.net/inventory-signalr/hubs/connect?transport=serverSentEvents&clientProtocol=1.5&connectionToken=Lm8JRd3Su6xZkd9yE9xz0nzz4SKu7DoOwy9MyWOGffTw4%2FshNppwJ%2Fxj2pqU3sSF7sf2iCN36nm%2B%2BqMhdkXwyyHwIyao2Bee8HhC4ic5is5nbhUQb3xDIxB1%2BVaciqoL&connectionData=%5B%7B%22name%22%3A%22inventoryhub%22%7D%5D&tid=0');
-        eventSource.onmessage = x => observer.next(x);
-        eventSource.onerror = x => observer.error(x, 'error');
+        eventSource.onmessage = message => observer.next(message);
+        eventSource.onerror = error => observer.error(error, 'error');
 
         return () => {
             eventSource.close();
